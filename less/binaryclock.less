@@ -1,0 +1,289 @@
+/*********************************************
+
+	Name:				jQuery binaryclock
+	URL:				http://playground.falkonien.de/binaryclock/
+	Date				June 2013
+	Description:	Main-Stylesheet
+	Version:			1.0
+	Author:			Falko Behr
+	Autor URL:		http://falkonien.de
+
+*********************************************/
+
+
+
+
+/******************************************************************************************
+ * IMPORTS
+ ******************************************************************************************/
+@import 'reset';
+@import 'prefixer';
+
+
+
+
+/******************************************************************************************
+ * VARIABLES
+ ******************************************************************************************/
+/* Colors */
+@background:	rgb(238,238,238);
+@activebg:		rgb(72,168,155);
+@passivebg:		@background;
+@passivebor:	@activebg;
+@fontcol:		rgba(0,0,0,.8);
+@realtime:		@fontcol + #888;
+
+
+/* Sizes */
+@border:			1px;
+@height:			40px;
+@space:			10px;
+@textheight:	20px;
+@radius:			(@height+(2*@border))/2;
+@width:			@height;
+
+
+/* Fonts */
+@fontfamily:	'Open Sans', Helvetica, Arial, sans-serif;
+@fontsize:		14px;
+@fontreg:		400;
+@fontbold:		700;
+
+
+
+
+/******************************************************************************************
+ * GLOBAL
+ ******************************************************************************************/
+body {
+	background: @background;
+	color: @fontcol;
+	font-family: @fontfamily;
+	font-size: @fontsize;
+	font-weight: @fontreg;
+}
+
+/* These selection declarations have to be separate. Customize the background color to match your design. */
+::-moz-selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+/* Clearing floats within html-code about the <br /> tag. */
+.clear {
+	clear: both;
+	font-size: 0;
+	height: 0;
+}
+
+/* Clearfix-method without additional markup. needs surrounding element. */
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: " ";
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+/* A better looking default horizontal rule */
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #333;
+	margin: 1em 0;
+	padding: 0;
+}
+
+/* Global form definitions - resets inner padding. */
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+/* Remove the gap between images and the bottom of their containers. */
+img {
+	vertical-align: middle;
+}
+
+/* Remove default fieldset styles. */
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Allow only vertical resizing of textareas. */
+textarea {
+	resize: vertical;
+}
+
+
+
+
+/******************************************************************************************
+ * PAGE
+ ******************************************************************************************/
+.bi-page-wrap {
+	height: 6*(@height+(2*@border)+@space)+@textheight;
+	left: 50%;
+	margin: -((6*(@height+(2*@border)+@space)+@textheight)/2) 0 0 -(((4*@width)+(3*@space)+(8*@border))/2);
+	position: absolute;
+	top: 47.5%;
+	width: (4*@width)+(3*@space)+(8*@border);
+}
+
+.bi-clock {
+
+	list-style: none;
+
+	li {
+		height: 2*(@height+(2*@border)+@space);
+		width: 100%;
+
+		.bi-line {
+			display: block;
+			height: @height+(2*@border);
+			list-style: none;
+			margin: 0 0 @space 0;
+			width: 100%;
+
+			li {
+				background: @activebg;
+				border: @border solid @activebg;
+				.border-radius(@radius);
+				display: block;
+				float: left;
+				height: @height;
+				margin: 0 @space 0 0;
+				width: @width;
+			}
+			li:last-child {
+				margin: 0;
+			}
+
+		}
+		.bi-line:after {
+			display: block;
+			clear: both;
+			content: " ";
+			font-size: 0;
+			height: 0;
+			visibility: hidden;
+		}
+
+		ul.bi-line[data-num="0"] {
+
+			li:nth-child(1) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="1"] {
+
+			li:nth-child(1) { background: @activebg; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="2"] {
+
+			li:nth-child(1) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(2) { background: @activebg; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="3"] {
+
+			li:nth-child(1) { background: @activebg; }
+			li:nth-child(2) { background: @activebg; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="4"] {
+
+			li:nth-child(1) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @activebg; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="5"] {
+
+			li:nth-child(1) { background: @activebg; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @activebg; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="6"] {
+
+			li:nth-child(1) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(2) { background: @activebg; }
+			li:nth-child(3) { background: @activebg; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="7"] {
+
+			li:nth-child(1) { background: @activebg; }
+			li:nth-child(2) { background: @activebg; }
+			li:nth-child(3) { background: @activebg; }
+			li:nth-child(4) { background: @passivebg; border-color: @passivebor; }
+
+		}
+
+		ul.bi-line[data-num="8"] {
+
+			li:nth-child(1) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @activebg; }
+
+		}
+
+		ul.bi-line[data-num="9"] {
+
+			li:nth-child(1) { background: @activebg; }
+			li:nth-child(2) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(3) { background: @passivebg; border-color: @passivebor; }
+			li:nth-child(4) { background: @activebg; }
+
+		}
+
+
+	}
+
+}
+
+p {
+	line-height: @textheight;
+	font-weight: @fontbold;
+	height: @textheight;
+	letter-spacing: .05em;
+	margin: 0 auto;
+	padding: 0 0 0 10px;
+	text-transform: uppercase;
+	width: (4*@width)+(3*@space)+(8*@border)-10px;
+
+	span {
+		color: @realtime;
+		padding: 0 0 0 5px;
+	}
+}
